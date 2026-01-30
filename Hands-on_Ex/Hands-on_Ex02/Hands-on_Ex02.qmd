@@ -12,9 +12,10 @@ p_load(tidyverse, ggrepel, ggthemes, hrbrthemes, patchwork)
 ```
 
 # Beyond ggplot2 Fundamentals
-- control the placement of annotation on a graph by using functions provided in ggrepel package,
-- create professional publication quality figure by using functions provided in ggthemes and hrbrthemes packages,
-- plot composite figure by combining ggplot2 graphs by using patchwork package.
+
+-   control the placement of annotation on a graph by using functions provided in ggrepel package,
+-   create professional publication quality figure by using functions provided in ggthemes and hrbrthemes packages,
+-   plot composite figure by combining ggplot2 graphs by using patchwork package.
 
 # Getting started
 
@@ -33,6 +34,7 @@ patchwork: an R package for preparing composite figure created using ggplot2.
 ```{r}
 exam_data <- read_csv("data/Exam_data.csv")
 ```
+
 ## Beyond ggplot2 Annotation: ggrepel
 
 This code visualizes the correlation between two subjects using geom_point and geom_smooth. Crucially, coord_cartesian is used to enforce the full exam score range (0-100) on the axes, ensuring the context is preserved regardless of the actual data spread.
@@ -115,7 +117,7 @@ ggplot(data=exam_data,
   theme_ipsum()
 ```
 
-The second goal centers around productivity for a production workflow. In fact, this “production workflow” is the context for where the elements of hrbrthemes should be used. 
+The second goal centers around productivity for a production workflow. In fact, this “production workflow” is the context for where the elements of hrbrthemes should be used.
 
 ```{r}
 ggplot(data=exam_data, 
@@ -176,9 +178,9 @@ p3 <- ggplot(data=exam_data,
 
 Patchwork package has a very simple syntax where we can create layouts super easily. Here’s the general syntax that combines:
 
-- Two-Column Layout using the Plus Sign +.
-- Parenthesis () to create a subplot group.
-- Two-Row Layout using the Division Sign /
+-   Two-Column Layout using the Plus Sign +.
+-   Parenthesis () to create a subplot group.
+-   Two-Row Layout using the Division Sign /
 
 ## Combining two ggplot2 graphs
 
@@ -190,14 +192,12 @@ p1 + p2
 
 We can plot more complex composite by using appropriate operators. For example, the composite figure below is plotted by using:
 
-“/” operator to stack two ggplot2 graphs,
-“|” operator to place the plots beside each other,
-“()” operator the define the sequence of the plotting.
-
+“/” operator to stack two ggplot2 graphs, “\|” operator to place the plots beside each other, “()” operator the define the sequence of the plotting.
 
 ```{r}
 (p1 / p2) | p3
 ```
+
 ## Creating a composite figure with tag
 
 In order to identify subplots in text, patchwork also provides auto-tagging capabilities as shown in the figure below.
@@ -225,7 +225,3 @@ p3 + inset_element(p2,
 patchwork <- (p1 / p2) | p3
 patchwork & theme_economist()
 ```
-
-
-
-
