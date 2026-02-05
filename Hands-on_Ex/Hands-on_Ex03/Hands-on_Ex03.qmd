@@ -4,6 +4,7 @@ author: "Shuang Zixin"
 ---
 
 # Programming Interactive Data Visualisation with R
+
 # Getting Started
 
 ```{r}
@@ -11,11 +12,7 @@ pacman::p_load(ggiraph, plotly,
                patchwork, DT, tidyverse) 
 ```
 
-ggiraph for making ‘ggplot’ graphics interactive.
-plotly, R library for plotting interactive statistical graphs.
-DT provides an R interface to the JavaScript library DataTables that create interactive table on html page.
-tidyverse, a family of modern R packages specially designed to support data science, analysis and communication task including creating static statistical graphs.
-patchwork for combining multiple ggplot2 graphs into one figure.
+ggiraph for making ‘ggplot’ graphics interactive. plotly, R library for plotting interactive statistical graphs. DT provides an R interface to the JavaScript library DataTables that create interactive table on html page. tidyverse, a family of modern R packages specially designed to support data science, analysis and communication task including creating static statistical graphs. patchwork for combining multiple ggplot2 graphs into one figure.
 
 # Importing Data
 
@@ -27,9 +24,7 @@ exam_data <- read_csv("data/Exam_data.csv")
 
 Interactive is made with ggplot geometries that can understand three arguments:
 
-Tooltip: a column of data-sets that contain tooltips to be displayed when the mouse is over elements.
-Onclick: a column of data-sets that contain a JavaScript function to be executed when elements are clicked.
-Data_id: a column of data-sets that contain an id to be associated with elements.
+Tooltip: a column of data-sets that contain tooltips to be displayed when the mouse is over elements. Onclick: a column of data-sets that contain a JavaScript function to be executed when elements are clicked. Data_id: a column of data-sets that contain an id to be associated with elements.
 
 ## Tooltip effect with tooltip aesthetic
 
@@ -113,7 +108,6 @@ girafe(
 ## Displaying statistics on tooltip
 
 Code chunk below shows an advanced way to customise tooltip. In this example, a function is used to compute 90% confident interval of the mean. The derived statistics are then displayed in the tooltip.
-
 
 ```{r}
 tooltip <- function(y, ymax, accuracy = .01) {
@@ -285,8 +279,7 @@ girafe(code = print(p1 + p2),
 
 ## There are two ways to create interactive graph by using plotly, they are:
 
-by using plot_ly(), and
-by using ggplotly()
+by using plot_ly(), and by using ggplotly()
 
 ## Creating an interactive scatter plot: plot_ly() method
 
@@ -324,6 +317,7 @@ ggplotly(p)
 ```
 
 ## Coordinated Multiple Views with plotly
+
 The creation of a coordinated linked plot by using plotly involves three steps:
 
 highlight_key() of plotly package is used as shared data.
@@ -356,6 +350,7 @@ subplot(ggplotly(p1),
 Crosstalk is an add-on to the htmlwidgets package. It extends htmlwidgets with a set of classes, functions, and conventions for implementing cross-widget interactions (currently, linked brushing and filtering).
 
 ## Interactive Data Table: DT package
+
 A wrapper of the JavaScript Library DataTables
 
 Data objects in R can be rendered as HTML tables using the JavaScript library ‘DataTables’ (typically via R Markdown or Shiny).
@@ -418,11 +413,7 @@ globalPop <- read_xls("data/GlobalPopulation.xls",
 
 gganimate extends the grammar of graphics as implemented by ggplot2 to include the description of animation. It does this by providing a range of new grammar classes that can be added to the plot object in order to customise how it should change with time.
 
-transition_*() defines how the data should be spread out and how it relates to itself across time.
-view_*() defines how the positional scales should change along the animation.
-shadow_*() defines how data from other points in time should be presented in the given point in time.
-enter_*()/exit_*() defines how new data should appear and how old data should disappear during the course of the animation.
-ease_aes() defines how different aesthetics should be eased during transitions.
+transition\_*() defines how the data should be spread out and how it relates to itself across time. view\_*() defines how the positional scales should change along the animation. shadow\_*() defines how data from other points in time should be presented in the given point in time. enter\_*()/exit\_\*() defines how new data should appear and how old data should disappear during the course of the animation. ease_aes() defines how different aesthetics should be eased during transitions.
 
 ## Building a static population bubble plot
 
@@ -442,6 +433,7 @@ ggplot(globalPop, aes(x = Old, y = Young,
 ```
 
 ## Building the animated bubble plot
+
 In the code chunk below,
 
 transition_time() of gganimate is used to create transition through distinct states in time (i.e. Year).
@@ -527,5 +519,3 @@ bp <- globalPop %>%
   layout(showlegend = FALSE)
 bp
 ```
-
-

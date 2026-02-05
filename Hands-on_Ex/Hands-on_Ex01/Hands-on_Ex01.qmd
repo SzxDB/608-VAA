@@ -60,9 +60,7 @@ ggplot(data=exam_data,
   geom_dotplot(dotsize = 0.5)
 ```
 
-The code chunk below performs the following two steps:
-scale_y_continuous() is used to turn off the y-axis, and
-binwidth argument is used to change the binwidth to 2.5.
+The code chunk below performs the following two steps: scale_y_continuous() is used to turn off the y-axis, and binwidth argument is used to change the binwidth to 2.5.
 
 ```{r}
 ggplot(data=exam_data, 
@@ -157,14 +155,10 @@ ggplot(data=exam_data,
 ```
 
 # Essential Grammatical Elements in ggplot2: stat
+
 The Statistics functions statistically transform data, usually as some form of summary. For example:
 
-frequency of values of a variable (bar graph)
-a mean
-a confidence limit
-There are two ways to use these functions:
-add a stat_() function and override the default geom, or
-add a geom_() function and override the default stat.
+frequency of values of a variable (bar graph) a mean a confidence limit There are two ways to use these functions: add a stat\_() function and override the default geom, or add a geom\_() function and override the default stat.
 
 ## Working with stat()
 
@@ -305,20 +299,3 @@ ggplot(data=exam_data,
   coord_flip() +
   theme_minimal()
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

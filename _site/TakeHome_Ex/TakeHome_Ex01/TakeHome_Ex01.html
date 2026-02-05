@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Shuang Zixin">
+
+<title>TakeHome_Ex01 – 608-VAA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">608-VAA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
+ <span class="dropdown-text">Hands-on Exercise 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
+ <span class="dropdown-text">Hands-on Exercise 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html">
+ <span class="dropdown-text">Hands-on Exercise 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html">
+ <span class="dropdown-text">Hands-on Exercise 4</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-takehome-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">TakeHome Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-takehome-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../TakeHome_Ex/TakeHome_Ex01/TakeHome_Ex01.html">
+ <span class="dropdown-text">TakeHome Exercise 1</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#visualizing-and-analysis-on-income-livelihood-of-informal-rural-laborers-in-vietnam" id="toc-visualizing-and-analysis-on-income-livelihood-of-informal-rural-laborers-in-vietnam" class="nav-link active" data-scroll-target="#visualizing-and-analysis-on-income-livelihood-of-informal-rural-laborers-in-vietnam"><strong>Visualizing and Analysis on Income &amp; Livelihood of Informal Rural Laborers in Vietnam</strong></a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">1. Overview</a>
+  <ul class="collapse">
+  <li><a href="#research-scene" id="toc-research-scene" class="nav-link" data-scroll-target="#research-scene">1.1 Research Scene</a></li>
+  <li><a href="#research-goal" id="toc-research-goal" class="nav-link" data-scroll-target="#research-goal">1.2 Research Goal</a></li>
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">1.3 Data Description</a></li>
+  </ul></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">2. Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#loading-packages" id="toc-loading-packages" class="nav-link" data-scroll-target="#loading-packages">2.1 Loading Packages</a></li>
+  <li><a href="#data-importing" id="toc-data-importing" class="nav-link" data-scroll-target="#data-importing">2.2 Data Importing</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">2.3 Data Wrangling</a>
+  <ul class="collapse">
+  <li><a href="#step-1-variable-selection-and-renaming" id="toc-step-1-variable-selection-and-renaming" class="nav-link" data-scroll-target="#step-1-variable-selection-and-renaming">Step 1: Variable Selection and Renaming</a></li>
+  <li><a href="#step-2-handling-missing-values-imputation" id="toc-step-2-handling-missing-values-imputation" class="nav-link" data-scroll-target="#step-2-handling-missing-values-imputation">Step 2: Handling Missing Values (Imputation)</a></li>
+  <li><a href="#step-3-recoding-categorical-variables-verification-mapping" id="toc-step-3-recoding-categorical-variables-verification-mapping" class="nav-link" data-scroll-target="#step-3-recoding-categorical-variables-verification-mapping">Step 3: Recoding Categorical Variables (Verification &amp; Mapping)</a></li>
+  <li><a href="#step-4-feature-engineering" id="toc-step-4-feature-engineering" class="nav-link" data-scroll-target="#step-4-feature-engineering">Step 4: Feature Engineering</a></li>
+  <li><a href="#step-5-formatting" id="toc-step-5-formatting" class="nav-link" data-scroll-target="#step-5-formatting">Step 5: Formatting</a></li>
+  <li><a href="#data-inspection" id="toc-data-inspection" class="nav-link" data-scroll-target="#data-inspection">Data Inspection</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#visualization-analysis" id="toc-visualization-analysis" class="nav-link" data-scroll-target="#visualization-analysis">3. Visualization &amp; Analysis</a>
+  <ul class="collapse">
+  <li><a href="#income-distribution" id="toc-income-distribution" class="nav-link" data-scroll-target="#income-distribution">3.1 Income Distribution</a></li>
+  <li><a href="#demographic-disparities" id="toc-demographic-disparities" class="nav-link" data-scroll-target="#demographic-disparities">3.2 Demographic Disparities</a></li>
+  <li><a href="#geographical-nuances" id="toc-geographical-nuances" class="nav-link" data-scroll-target="#geographical-nuances">3.3 Geographical Nuances</a></li>
+  <li><a href="#financial-health-debt-assets" id="toc-financial-health-debt-assets" class="nav-link" data-scroll-target="#financial-health-debt-assets">3.4 Financial Health: Debt &amp; Assets</a></li>
+  <li><a href="#living-standards-housing-conditions" id="toc-living-standards-housing-conditions" class="nav-link" data-scroll-target="#living-standards-housing-conditions">3.5 Living Standards: Housing Conditions</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4. Conclusion</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">5. Appendix</a>
+  <ul class="collapse">
+  <li><a href="#included-packages" id="toc-included-packages" class="nav-link" data-scroll-target="#included-packages">5.1 included packages</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">5.2 references</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TakeHome_Ex01</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Shuang Zixin </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="visualizing-and-analysis-on-income-livelihood-of-informal-rural-laborers-in-vietnam" class="level1">
+<h1><strong>Visualizing and Analysis on Income &amp; Livelihood of Informal Rural Laborers in Vietnam</strong></h1>
+</section>
+<section id="overview" class="level1">
+<h1>1. Overview</h1>
+<section id="research-scene" class="level2">
+<h2 class="anchored" data-anchor-id="research-scene">1.1 Research Scene</h2>
+<p>In the economic structure of developing regions, <strong>informal laborers</strong> play a crucial but often invisible role. Without formal employment contracts or social safety nets, their livelihoods are highly vulnerable to economic fluctuations. This is particularly true in the northern mountainous regions of Vietnam, where limited resources and geographic barriers pose significant challenges.</p>
+<p>Visualizing the income sources, asset distribution, and living conditions of these laborers is essential for understanding the economic resilience of rural households and informing targeted policies.</p>
+</section>
+<section id="research-goal" class="level2">
+<h2 class="anchored" data-anchor-id="research-goal">1.2 Research Goal</h2>
+<p>The primary objective of this exercise is to apply visual analytics techniques to reveal patterns, trends, and relationships within the survey data. Specifically, this analysis aims to:</p>
+<ul>
+<li><strong>Characterize Income Structures</strong>: Determine the distribution of total earnings and identify income inequality.</li>
+<li><strong>Demographic Comparison</strong>: Explore how gender (<code>CGEN</code>) and ethnicity (<code>CRAC</code>) influence earning potential.</li>
+<li><strong>Geographical Analysis</strong>: Visualize the variation in agricultural vs.&nbsp;non-agricultural income across different provinces (<code>CPRO</code>).</li>
+<li><strong>Financial Health Assessment</strong>: Examine the relationship between household income, debt (<code>LCRE</code>), and savings (<code>LSAV</code>).</li>
+<li><strong>Well-being Correlation</strong>: Investigate whether higher economic status correlates with higher self-reported living satisfaction.</li>
+</ul>
+</section>
+<section id="data-description" class="level2">
+<h2 class="anchored" data-anchor-id="data-description">1.3 Data Description</h2>
+<p>The dataset used in this analysis originates from a survey on the livelihoods of informal laborers in rural Vietnam.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Data Source
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dataset is retrieved from the study by Hoang &amp; Nguyen (2021).<br>
+<strong>Reference:</strong> <a href="https://www.sciencedirect.com/science/article/pii/S235234092100576X#tbl0002">Data from ScienceDirect</a></p>
+</div>
+</div>
+<p>The raw data contains numerical codes representing various demographic and economic variables. Key variables focused on in this study include:</p>
+<ul>
+<li><strong>Demographics</strong>: <code>CPRO</code> (Province), <code>CGEN</code> (Gender), <code>CRAC</code> (Race/Ethnicity).</li>
+<li><strong>Financials</strong>: <code>TEIN</code> (Total Earned Income), <code>TAIN</code> (Total Agricultural Income), <code>TOIN</code> (Total Non-farm Income).</li>
+<li><strong>Assets &amp; Debt</strong>: <code>LCRE</code> (Loan/Credit), <code>LSAV</code> (Savings).</li>
+<li><strong>Perception</strong>: <code>LHO</code> (Living Condition Assessment).</li>
+</ul>
+</section>
+</section>
+<section id="data-preparation" class="level1">
+<h1>2. Data Preparation</h1>
+<p>In this section, we will load the necessary R packages, import the dataset, and perform data wrangling to transform raw numerical codes into meaningful categorical labels suitable for analysis.</p>
+<section id="loading-packages" class="level2">
+<h2 class="anchored" data-anchor-id="loading-packages">2.1 Loading Packages</h2>
+<p>First, we load the required packages. We will use <code>pacman</code> for efficient package management. The core package is <code>tidyverse</code> for data manipulation and visualization, supplemented by <code>ggrepel</code> for label formatting, <code>ggthemes</code> for plot aesthetics, and <code>knitr</code> for generating tables.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(tidyverse,    <span class="co"># Core data science packages (ggplot2, dplyr, readr, etc.)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>       ggrepel,      <span class="co"># Repulsive text labels</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>       ggthemes,     <span class="co"># Extra themes for ggplot2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>       hrbrthemes,   <span class="co"># Typography-centric themes</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>       patchwork,    <span class="co"># For combining plots</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>       knitr,        <span class="co"># For static tables</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>       kableExtra,   <span class="co"># For styling tables</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>       readxl)       <span class="co"># For imporitng excel file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="data-importing" class="level2">
+<h2 class="anchored" data-anchor-id="data-importing">2.2 Data Importing</h2>
+<p>The dataset is imported using read_excel. We display the first few rows to inspect the raw structure.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/Data.xlsx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The newly imported dataset consists of <strong>725 rows</strong> and <strong>30 columns</strong>. The detailed data structure can be viewed in the collapsible section below.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(raw_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 725
+Columns: 30
+$ CPRO &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ CGEN &lt;chr&gt; "1", "1", "2", "1", "2", "2", "1", "1", "1", "1", "1", "2", "2", …
+$ CRAC &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1,…
+$ CJOB &lt;dbl&gt; 1, 1, 3, 1, 1, NA, 3, 1, 3, 1, 1, 1, 2, 1, NA, 2, 1, 1, 1, 1, 1, …
+$ CQUI &lt;dbl&gt; 3, 5, 3, 3, 3, 4, 1, 3, 3, 3, 3, 3, 2, 3, 5, 1, 2, 2, 2, 2, 2, 2,…
+$ TEIN &lt;dbl&gt; 37, 25, 33, 35, 36, 21, 35, 36, 38, 30, 58, 24, 32, 11, 22, 95, 4…
+$ TAIN &lt;dbl&gt; 25, 22, 25, 30, 28, 17, 25, 28, 26, 22, 40, 24, 23, 11, 20, 30, 3…
+$ TSII &lt;dbl&gt; 7, 0, 0, 5, 0, 0, 0, 0, 12, 2, 0, 0, 0, 0, 0, 50, 17, 10, 12, 15,…
+$ TOIN &lt;dbl&gt; 5, 3, 8, 0, 8, 4, 10, 8, 0, 6, 18, 0, 9, 0, 2, 15, 0, 0, 0, 0, 16…
+$ FEDU &lt;dbl&gt; 1, 0, 1, 1, 0, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 2, 1, 2, 2, 2, 2, 2,…
+$ FVTP &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 2,…
+$ FCRA &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ FTAP &lt;dbl&gt; 1, 1, 2, NA, 2, 2, 2, 2, 2, 2, 2, NA, NA, 2, NA, 2, NA, 2, NA, NA…
+$ LHO1 &lt;dbl&gt; NA, 1, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 1, NA, NA, …
+$ LHO2 &lt;dbl&gt; 1, NA, NA, NA, 1, 1, NA, 1, 1, 1, 1, 1, NA, 1, NA, NA, NA, NA, NA…
+$ LHO3 &lt;dbl&gt; NA, NA, NA, NA, NA, NA, 1, NA, NA, NA, NA, NA, 1, NA, NA, 1, 1, 1…
+$ LHO4 &lt;dbl&gt; NA, NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ LCRE &lt;dbl&gt; NA, 15, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ LSAV &lt;dbl&gt; 5, NA, 30, NA, NA, 2, 70, NA, 25, 10, 15, NA, NA, 16, NA, 20, NA,…
+$ LWDA &lt;dbl&gt; 240, 350, 260, 300, 360, 360, 260, 260, 300, 300, 270, NA, NA, 20…
+$ PPO1 &lt;dbl&gt; 5, 2, 5, NA, 5, 2, 5, 5, 4, 5, 4, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ PPO2 &lt;dbl&gt; 2, 5, 5, NA, 5, 4, 2, 2, 3, 1, 1, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ PPO3 &lt;dbl&gt; 3, 3, 1, NA, 1, 3, 3, 3, 3, 3, 3, NA, NA, 1, NA, 1, NA, 1, NA, 1,…
+$ PPO4 &lt;dbl&gt; 1, 1, 1, NA, 1, 1, 2, 2, 2, 2, 2, NA, NA, 3, NA, NA, NA, NA, NA, …
+$ PPO5 &lt;dbl&gt; 3, 1, 1, NA, 1, 1, 3, 3, 3, 3, 3, NA, NA, 1, NA, NA, NA, NA, NA, …
+$ ARO1 &lt;dbl&gt; 3, 1, 1, NA, 1, 1, 2, 2, 2, 2, 2, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ ARO2 &lt;dbl&gt; 1, 1, 1, NA, 1, 1, 1, 1, 1, 2, 1, NA, NA, 2, NA, NA, NA, NA, NA, …
+$ ARO3 &lt;dbl&gt; 1, 1, 1, NA, 1, 1, 3, 3, 2, 3, 3, NA, NA, 1, NA, 1, NA, NA, NA, 1…
+$ ARO4 &lt;chr&gt; "3", "3", NA, NA, "2", "2", "3", "3", "3", "3", "3", NA, NA, "3",…
+$ ARO5 &lt;dbl&gt; 1, 1, 1, NA, 1, 1, 3, 3, 3, 3, 3, NA, NA, 1, NA, NA, NA, NA, NA, …</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">2.3 Data Wrangling</h2>
+<p>The raw dataset contains numerical codes for categorical variables and requires significant preprocessing to be suitable for visualization. To ensure data accuracy and interpretability, we implemented a five-step data wrangling pipeline:</p>
+<section id="step-1-variable-selection-and-renaming" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-variable-selection-and-renaming">Step 1: Variable Selection and Renaming</h3>
+<p>The original dataset contains 30 columns. We narrowed our scope to key variables relevant to the analysis objectives: * <strong>Demographics</strong>: Province, Gender, Ethnicity, Job Type. * <strong>Financials</strong>: Income components (Total, Agricultural, Service/Industrial, Others), Debt (<code>LCRE</code>), and Savings (<code>LSAV</code>). * <strong>Living Standards</strong>: House status indicators (<code>LHO1</code> - <code>LHO4</code>). * <strong>Factors</strong>: Education Level (<code>FEDU</code>).</p>
+<p>All selected columns were renamed from cryptic codes (e.g., <code>CGEN</code>, <code>TEIN</code>) to descriptive English labels (e.g., <code>Gender</code>, <code>Income_Total</code>).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    CPRO, CGEN, CRAC, CJOB,       <span class="co"># Demographics</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    TEIN, TAIN, TSII, TOIN,       <span class="co"># Income (Added TSII)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    FEDU,                         <span class="co"># Education</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    LCRE, LSAV,                   <span class="co"># Financials</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    LHO1, LHO2, LHO3, LHO4        <span class="co"># Housing Conditions</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Province        =</span> CPRO,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Gender          =</span> CGEN,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ethnicity       =</span> CRAC,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Job_Type        =</span> CJOB,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Income_Total    =</span> TEIN,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Income_Agri     =</span> TAIN,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">Income_Service  =</span> TSII,      <span class="co"># New Column</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">Income_Other    =</span> TOIN,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">Education_Level =</span> FEDU,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Debt            =</span> LCRE,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Savings         =</span> LSAV</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-2-handling-missing-values-imputation" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-handling-missing-values-imputation">Step 2: Handling Missing Values (Imputation)</h3>
+<p>We applied specific imputation strategies based on the variable definitions in Table 1:</p>
+<ul>
+<li><p><strong>Quantitative Variables (Income, Debt, Savings):</strong> According to Table 1, variables like <code>TEIN</code> (Total Income) and <code>LCRE</code> (Loan) are defined as <strong>“Scale”</strong> measures. In this survey context, a missing value (<code>NA</code>) in a component income field (e.g., Service Income) logically implies a zero contribution to the total income, rather than missing data. Therefore, we imputed these <code>NA</code> values as <code>0</code> to maintain mathematical consistency in total income calculations.</p></li>
+<li><p><strong>Categorical Variables (Job Type):</strong> Conversely, for the <code>Job_Type</code> variable, Table 2 explicitly lists a “Missing System” category (<span class="math inline">\(n=49\)</span>). We preserved these as a distinct “Missing/Unknown” category instead of imputing them.</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> clean_data <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(Debt, Savings, Income_Agri, Income_Service, Income_Other), <span class="sc">~</span><span class="fu">replace_na</span>(., <span class="dv">0</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-3-recoding-categorical-variables-verification-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-recoding-categorical-variables-verification-mapping">Step 3: Recoding Categorical Variables (Verification &amp; Mapping)</h3>
+<p>Since the dataset lacks an embedded codebook, we reconstructed the coding schema by cross-referencing the internal frequency counts with the summary statistics provided in <strong>Table 2</strong> and <strong>Table 3</strong> of the source article (Hoang &amp; Nguyen, 2021). This “frequency matching” process confirmed the following mappings:</p>
+<ul>
+<li><strong>Job Type (<code>CJOB</code>)</strong>: Code <code>1</code> appears 515 times, which perfectly matches the count for “Agricultural sector” in Table 2. Thus, <code>1</code> = Agriculture, <code>2</code> = Service, <code>3</code> = Others.</li>
+<li><strong>Education (<code>FEDU</code>)</strong>: Code <code>0</code> appears 473 times, matching the “Primary education” count in Table 3. Code <code>1</code> (n=136) matches “Lower secondary”. This corrects the initial assumption that 0 represented “No Schooling”.</li>
+<li><strong>House Type (<code>LHO</code>)</strong>: The columns <code>LHO1</code> to <code>LHO4</code> were identified as dummy variables representing housing quality, ranging from “Cottage” (LHO1) to “Buildings” (LHO4).</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> clean_data <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Province =</span> <span class="fu">case_match</span>(Province,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Province 1"</span>, <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Province 2"</span>, <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Province 3"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Province 4"</span>, <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Province 5"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="fu">as.character</span>(Province)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Gender =</span> <span class="fu">case_match</span>(<span class="fu">as.character</span>(Gender),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"1"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="cn">NA_character_</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ethnicity =</span> <span class="fu">case_match</span>(Ethnicity,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Kinh"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Ethnic Minorities"</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Job_Type =</span> <span class="fu">case_match</span>(Job_Type,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Agriculture"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Service &amp; Ind"</span>, </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Others"</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA</span> <span class="sc">~</span> <span class="st">"Missing/Unknown"</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="st">"Missing/Unknown"</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">Education_Level =</span> <span class="fu">case_match</span>(Education_Level,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Primary"</span>,</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Lower Secondary"</span>,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>      <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Upper Secondary"</span>,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>      <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Others"</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="st">"Primary"</span> <span class="co"># Default to largest group if unknown</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `Province = case_match(...)`.
+Caused by warning:
+! `case_match()` was deprecated in dplyr 1.2.0.
+ℹ Please use `recode_values()` instead.</code></pre>
+</div>
+</div>
+</section>
+<section id="step-4-feature-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-feature-engineering">Step 4: Feature Engineering</h3>
+<p>To deepen our analysis, we derived new variables from the raw data: * <strong><code>House_Type</code></strong>: Consolidated the four <code>LHO</code> dummy columns into a single categorical variable to represent the highest quality of housing owned. * <strong><code>Financial_Status</code></strong>: Categorized households into “In Debt” or “Debt Free” based on the <code>Debt</code> column. * <strong><code>Livelihood_Group</code></strong>: Classified households based on their income structure (e.g., “Farming Focused” if agricultural income constitutes &gt;50% of total income).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> clean_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A. Housing Quality (Consolidating LHO1-4 into one column)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Logic: Check which column is 1. Higher number = Better house.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">House_Type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      LHO4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Buildings (Best)"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      LHO3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Solid House"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      LHO2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Roofed House"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      LHO1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Cottage (Basic)"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>      <span class="sc">~</span> <span class="st">"Unknown"</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># B. Financial Health</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Financial_Status =</span> <span class="fu">if_else</span>(Debt <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"In Debt"</span>, <span class="st">"Debt Free"</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># C. Livelihood Strategy (Income Source)</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate percentages</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pct_Agri =</span> (Income_Agri <span class="sc">/</span> Income_Total) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pct_Service =</span> (Income_Service <span class="sc">/</span> Income_Total) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Livelihood_Group =</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      Pct_Agri <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"Farming Focused"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      Pct_Service <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"Service/Ind Focused"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Diversified/Other"</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-5-formatting" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-formatting">Step 5: Formatting</h3>
+<p>Finally, all categorical variables were converted into <strong>factors</strong>. Ordinal variables such as <code>Education_Level</code> and <code>House_Type</code> were explicitly ordered to respect their logical hierarchy (e.g., Primary &lt; Secondary) for correct plotting.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> clean_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(LHO1, LHO2, LHO3, LHO4)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(Province, Gender, Ethnicity, Financial_Status, Livelihood_Group), as.factor),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Job_Type =</span> <span class="fu">factor</span>(Job_Type, </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Agriculture"</span>, <span class="st">"Service &amp; Ind"</span>, <span class="st">"Others"</span>, <span class="st">"Missing/Unknown"</span>)),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Education_Level =</span> <span class="fu">factor</span>(Education_Level, </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Primary"</span>, <span class="st">"Lower Secondary"</span>, <span class="st">"Upper Secondary"</span>, <span class="st">"Others"</span>)),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">House_Type =</span> <span class="fu">factor</span>(House_Type, </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Cottage (Basic)"</span>, <span class="st">"Roofed House"</span>, <span class="st">"Solid House"</span>, <span class="st">"Buildings (Best)"</span>))</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="data-inspection" class="level3">
+<h3 class="anchored" data-anchor-id="data-inspection">Data Inspection</h3>
+<p>After completing the cleaning and feature engineering pipeline, the final dataset consists of 725 observations and 16 variables (excluding intermediate columns). The table below provides a preview of the processed data structure, confirming that all variables are correctly formatted and ready for visual analysis.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(clean_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 725
+Columns: 16
+$ Province         &lt;fct&gt; Province 1, Province 1, Province 1, Province 1, Provi…
+$ Gender           &lt;fct&gt; Male, Male, Female, Male, Female, Female, Male, Male,…
+$ Ethnicity        &lt;fct&gt; Ethnic Minorities, Ethnic Minorities, Ethnic Minoriti…
+$ Job_Type         &lt;fct&gt; Agriculture, Agriculture, Others, Agriculture, Agricu…
+$ Income_Total     &lt;dbl&gt; 37, 25, 33, 35, 36, 21, 35, 36, 38, 30, 58, 24, 32, 1…
+$ Income_Agri      &lt;dbl&gt; 25, 22, 25, 30, 28, 17, 25, 28, 26, 22, 40, 24, 23, 1…
+$ Income_Service   &lt;dbl&gt; 7, 0, 0, 5, 0, 0, 0, 0, 12, 2, 0, 0, 0, 0, 0, 50, 17,…
+$ Income_Other     &lt;dbl&gt; 5, 3, 8, 0, 8, 4, 10, 8, 0, 6, 18, 0, 9, 0, 2, 15, 0,…
+$ Education_Level  &lt;fct&gt; Lower Secondary, Primary, Lower Secondary, Lower Seco…
+$ Debt             &lt;dbl&gt; 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ Savings          &lt;dbl&gt; 5, 0, 30, 0, 0, 2, 70, 0, 25, 10, 15, 0, 0, 16, 0, 20…
+$ House_Type       &lt;fct&gt; Roofed House, Cottage (Basic), Buildings (Best), Cott…
+$ Financial_Status &lt;fct&gt; Debt Free, In Debt, Debt Free, Debt Free, Debt Free, …
+$ Pct_Agri         &lt;dbl&gt; 67.56757, 88.00000, 75.75758, 85.71429, 77.77778, 80.…
+$ Pct_Service      &lt;dbl&gt; 18.918919, 0.000000, 0.000000, 14.285714, 0.000000, 0…
+$ Livelihood_Group &lt;fct&gt; Farming Focused, Farming Focused, Farming Focused, Fa…</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="visualization-analysis" class="level1">
+<h1>3. Visualization &amp; Analysis</h1>
+<section id="income-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="income-distribution">3.1 Income Distribution</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>median_income <span class="ot">&lt;-</span> clean_data <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Province) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">grp_median =</span> <span class="fu">median</span>(Income_Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(clean_data, <span class="fu">aes</span>(<span class="at">x =</span> Income_Total)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="dv">10</span>, </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"#69b3a2"</span>, </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>, </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"#e63946"</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">data =</span> median_income, <span class="fu">aes</span>(<span class="at">xintercept =</span> grp_median), </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Province, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Household Income across Provinces"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Red dashed line represents the Median Income"</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Total Income (Million VND)"</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>) <span class="co"># 加粗分面标题</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-income-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-income-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="TakeHome_Ex01_files/figure-html/fig-income-dist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-income-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of Total Household Income by Province
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="demographic-disparities" class="level2">
+<h2 class="anchored" data-anchor-id="demographic-disparities">3.2 Demographic Disparities</h2>
+</section>
+<section id="geographical-nuances" class="level2">
+<h2 class="anchored" data-anchor-id="geographical-nuances">3.3 Geographical Nuances</h2>
+</section>
+<section id="financial-health-debt-assets" class="level2">
+<h2 class="anchored" data-anchor-id="financial-health-debt-assets">3.4 Financial Health: Debt &amp; Assets</h2>
+</section>
+<section id="living-standards-housing-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="living-standards-housing-conditions">3.5 Living Standards: Housing Conditions</h2>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>4. Conclusion</h1>
+</section>
+<section id="appendix" class="level1">
+<h1>5. Appendix</h1>
+<section id="included-packages" class="level2">
+<h2 class="anchored" data-anchor-id="included-packages">5.1 included packages</h2>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">5.2 references</h2>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
