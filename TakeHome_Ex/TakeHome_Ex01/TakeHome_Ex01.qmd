@@ -186,7 +186,13 @@ mutate(
 
 ### Step 4: Feature Engineering
 
-To deepen our analysis, we derived new variables from the raw data: \* **`House_Type`**: Consolidated the four `LHO` dummy columns into a single categorical variable to represent the highest quality of housing owned. \* **`Financial_Status`**: Categorized households into "In Debt" or "Debt Free" based on the `Debt` column. \* **`Livelihood_Group`**: Classified households based on their income structure (e.g., "Farming Focused" if agricultural income constitutes \>50% of total income).
+To deepen our analysis, we derived new variables from the raw data:
+
+**`House_Type`**: Consolidated the four `LHO` dummy columns into a single categorical variable to represent the highest quality of housing owned.
+
+**`Financial_Status`**: Categorized households into "In Debt" or "Debt Free" based on the `Debt` column.
+
+**`Livelihood_Group`**: Classified households based on their income structure (e.g., "Farming Focused" if agricultural income constitutes \>50% of total income).
 
 ```{r}
 clean_data <- clean_data %>%
@@ -254,13 +260,28 @@ glimpse(clean_data)
 
 ## 3.1 Income Distribution
 
+### 3.1.1 Overview & Methodology
 
+In this section, we examine the distribution of Total Household Income (`Income_Total`) to understand the economic landscape of the surveyed population.
+
+-   **Variable Type**: Quantitative Continuous (`Income_Total`) and -Nominal (`Province`).
+
+-   **Visualisation Technique**: A Histogram with Density Overlay, faceted by Province.
+
+-   **Rationale**: Income data is typically non-normal. The histogram allows us to visualize the frequency of income ranges (bins), while the overlaid density curve provides a smoothed approximation of the distribution shape. Faceting by `Province` enables a direct comparison of economic disparity across different geographic regions.
+
+### 3.1.2 Visual Analysis
+
+::: panel-tabset
+## Code
 
 ```{r}
 #| label: fig-income-dist
 #| fig-cap: "Distribution of Total Household Income by Province"
 #| message: false
 #| warning: false
+#| eval: false
+#| echo: true
 
 median_income <- clean_data %>%
   group_by(Province) %>%
@@ -289,24 +310,389 @@ ggplot(clean_data, aes(x = Income_Total)) +
   ) +
   theme(
     plot.title = element_text(face = "bold", size = 14),
-    strip.text = element_text(face = "bold") # 加粗分面标题
+    strip.text = element_text(face = "bold") 
   )
 ```
 
+## Graph
+```{r}
+#| label: fig-income-render
+#| ref.label: "fig-income-dist"
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+```
+:::
 
+### 3.1.3 Observations
+
+The visualization reveals a striking similarity in income distribution across all five provinces, suggesting a regionally homogenous economic structure rather than localized disparities.
+
+- **Distribution Shape**: All five provinces exhibit identical right-skewed distributions, indicating a uniform concentration of households at lower income levels across the region.
+- **Central Tendency**: Median incomes show minimal variation (range: 20-35 million VND), suggesting that geographic location is not a primary driver of household wealth in this dataset.
 
 ## 3.2 Demographic Disparities
 
+### 3.2.1 Overview & Methodology
+
+This section investigates how social stratification—specifically **Ethnicity** and **Gender**—correlates with economic outcomes.
+
+-   **Variable Type**: Quantitative Continuous (`Income_Total`) vs. Categorical Nominal (`Ethnicity`, `Gender`).
+-   **Visualisation Technique**: A **Grouped Boxplot**.
+-   **Rationale**: Boxplots are the statistical standard for comparing distributions across groups. They clearly display the **Median** (central tendency), **Interquartile Range (IQR)** (wealth dispersion), and **Outliers** (extreme values). Grouping by Ethnicity and filling by Gender allows us to detect intersectional disparities (e.g., do female-headed households fare worse within ethnic minority groups?).
+
+### 3.2.2 Visual Analysis
+
+::: panel-tabset
+## Code
+
+```{r}
+#| label: fig-demo-disparity
+#| fig-cap: "Income Disparities by Ethnicity and Gender of Household Head"
+#| message: false
+#| warning: false
+#| eval: false
+#| echo: true
+
+ggplot(clean_data, aes(x = Ethnicity, y = Income_Total, fill = Gender)) +
+
+  geom_boxplot(alpha = 0.8, outlier.colour = "red", outlier.shape = 1) +
+  
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 3, color = "white", 
+               position = position_dodge(0.75)) +
+
+  scale_y_continuous(trans = "log10", labels = scales::comma, breaks = c(1, 10, 50, 100, 500)) +
+  
+  scale_fill_manual(values = c("Male" = "#4e79a7", "Female" = "#f28e2b")) +
+  theme_minimal() +
+  
+  labs(
+    title = "Income Inequality: Ethnicity vs. Gender",
+    subtitle = "White diamonds indicate Mean Income; Red circles indicate Outliers",
+    x = "Ethnic Group",
+    y = "Total Income (Million VND)",
+    fill = "Head of Household"
+  ) +
+  theme(
+    legend.position = "top",
+    axis.text.x = element_text(face = "bold", size = 11),
+    plot.title = element_text(face = "bold", size = 14)
+  )
+
+```
+
+## Graph
+```{r}
+#| label: fig-demo-render
+#| ref.label: "fig-demo-disparity"
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+```
+
+## Statistics
+
+```{r}
+#| echo: false
+#| message: false
+
+library(knitr)
+
+stats_table <- clean_data %>%
+  group_by(Ethnicity) %>%
+  summarise(
+    Median = median(Income_Total, na.rm = TRUE),
+    Mean = mean(Income_Total, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  mutate(
+    `Gap vs Minority (%)` = round((Median - 28.5) / 28.5 * 100, 1) 
+  )
+
+kable(stats_table, caption = "Table: Summary Statistics of Income by Ethnicity", digits = 1)
+```
+:::
+
+### 3.2.3 Observations
+
+The analysis reveals a nuanced picture of inequality where widespread poverty coexists with a distinct structural gap.
+
+- **Structural Disparity**: The Kinh group median income (35.0m VND) is 22.8% higher than that of Ethnic Minorities (28.5m VND), confirming a distinct economic advantage.
+- **Upper-End Divergence**: While low-income prevalence is similar between groups, the wider gap in Mean Income (41.6m vs 34.9m) indicates that high-income outliers are predominantly Kinh.
+
+
 ## 3.3 Geographical Nuances
 
-## 3.4 Financial Health: Debt & Assets
+### 3.3.1 Overview & Methodology
+
+This section examines the **economic efficiency** of different livelihood strategies across provinces.
+
+-   **Variable Interaction**: `Province` (Nominal) × `Livelihood_Group` (Nominal) → `Median Income` (Ratio).
+-   **Visualisation Technique**: **Heatmap**.
+-   **Rationale**: A heatmap provides an immediate visual assessment of "what pays best where." By mapping median income to color intensity within a matrix grid, we can instantly identify high-efficiency economic hotspots versus low-yield traps without the clutter of complex distribution plots.
+
+### 3.3.2 Visual Analysis
+
+::: panel-tabset
+## Code
+
+```{r}
+#| label: fig-geo-heatmap
+#| fig-cap: "Economic Efficiency Heatmap: Median Income by Strategy and Region"
+#| message: false
+#| warning: false
+#| eval: false
+#| echo: true
+
+library(dplyr)
+library(ggplot2)
+
+heatmap_data <- clean_data %>%
+  group_by(Province, Livelihood_Group) %>%
+  summarise(
+    Median_Income = median(Income_Total, na.rm = TRUE),
+    .groups = 'drop'
+  )
+
+ggplot(heatmap_data, aes(x = Province, y = Livelihood_Group, fill = Median_Income)) +
+  
+  geom_tile(color = "white", lwd = 1.5, linetype = 1) +
+  
+
+  geom_text(aes(label = round(Median_Income, 1)), color = "white", size = 4, fontface = "bold") +
+  
+
+  scale_fill_viridis_c(option = "magma", direction = -1, name = "Median Income\n(Million VND)") +
+  
+  scale_x_discrete(expand = c(0, 0)) + 
+  scale_y_discrete(expand = c(0, 0)) + 
+  theme_minimal() +
+  labs(
+    title = "Regional Economic Efficiency Matrix",
+    subtitle = "Heatmap showing Median Income",
+    x = NULL,
+    y = NULL
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 10),
+    axis.text = element_text(size = 6, face = "bold", color = "gray30"),
+    legend.position = "right",
+    panel.grid = element_blank() 
+  )
+
+```
+
+## Graph
+```{r}
+#| label: fig-geo-render
+#| ref.label: "fig-geo-heatmap"
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+```
+:::
+
+### 3.3.3 Observations
+
+The heatmap data indicates three key patterns regarding income generation:
+
+- **Sector Performance**: Households relying solely on farming consistently record the lowest median incomes across all provinces.
+- **Diversification Return**: 'Wage' and 'Diversified' categories correlate with significantly higher incomes than farming, with Province 1 exhibiting the strongest non-farm returns.
+
+## 3.4 Education Level and Household Income
+
+### 3.4.1 Overview & Methodology
+
+This section analyzes the relationship between the education level of the household head and total household income.
+
+-   **Variables**: `Income_Total` (Ratio) grouped by `Education_Level` (Ordinal/Nominal).
+-   **Visualisation**: **Empirical Cumulative Distribution Function (ECDF)**.
+-   **Rationale**: The ECDF plots the cumulative percentage of households earning up to a certain income level. This allows for a comparison of the entire income distribution across education groups. A curve positioned further to the right indicates higher income levels across the population segment.
+
+### 3.4.2 Visual Analysis
+
+::: panel-tabset
+## Code
+
+```{r}
+#| label: fig-edu-ecdf
+#| fig-cap: "Cumulative Income Distribution by Education Level"
+#| message: false
+#| warning: false
+#| eval: false
+#| echo: true
+
+library(ggplot2)
+library(dplyr)
+library(scales)
+
+cdf_data <- clean_data %>%
+
+  filter(!is.na(Education_Level) & !is.na(Income_Total)) %>%
+
+  mutate(Education_Level = factor(Education_Level, 
+                                  levels = c("Primary", "Lower Secondary", "Upper Secondary", "Others")))
+
+ggplot(cdf_data, aes(x = Income_Total, color = Education_Level)) +
+  
+  stat_ecdf(geom = "step", linewidth = 1) +
+  
+  scale_y_continuous(labels = scales::percent, name = "Cumulative Proportion of Households") +
+  
+  scale_color_brewer(palette = "Set1", name = "Education Level") +
+  
+  geom_vline(xintercept = 20, linetype = "dashed", color = "gray60") +
+  
+  theme_minimal() +
+  labs(
+    title = "Income Distribution by Education Level (ECDF)",
+    x = "Total Household Income (Million VND)"
+  ) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 10)
+  )
+```
+
+## Graph
+```{r}
+#| label: fig-edu-render
+#| ref.label: "fig-edu-ecdf"
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+```
+:::
+
+### 3.4.3 Observations
+
+The ECDF analysis indicates a strong correlation between education levels and household income stability:
+
+- **Poverty Reduction**: At the 20 million VND threshold, 30% of Primary-educated households fall below the line, compared to under 5% of the Upper Secondary group.
+- **Marginal Return**: The income gap between Lower and Upper Secondary levels exceeds that of earlier stages, indicating the highest marginal gain occurs upon completing Upper Secondary education.
 
 ## 3.5 Living Standards: Housing Conditions
 
+### 3.5.1 Overview & Methodology
+
+This section analyzes the income distribution across different housing conditions.
+
+-   **Variables**: `Income_Total` (Ratio) grouped by `House_Type` (Ordinal).
+-   **Visualisation**: **Ridgeline Plot (Density Plot)**.
+-   **Rationale**: The ridgeline plot visualizes the entire probability density of income for each housing category. Unlike boxplots which summarise data into quartiles, this method reveals the shape of the distribution—showing peaks (most common income levels) and tails (wealthy outliers)—providing a richer understanding of the economic reality behind housing choices.
+
+### 3.5.2 Visual Analysis
+
+::: panel-tabset
+## Code
+
+```{r}
+#| label: fig-housing-ridge
+#| fig-cap: "Income Distribution by Housing Type (Ridgeline Plot)"
+#| message: false
+#| warning: false
+#| eval: false
+#| echo: true
+
+library(ggplot2)
+library(ggridges)
+library(dplyr)
+library(scales)
+
+ridge_data <- clean_data %>%
+
+  filter(!is.na(Income_Total) & !is.na(House_Type)) %>%
+  filter(House_Type != "Unknown") %>%
+
+  add_count(House_Type) %>%
+  filter(n > 5) %>%
+  
+  mutate(House_Type = factor(House_Type, 
+                             levels = c("Cottage (Basic)", "Roofed House", "Solid House", "Buildings (Best)")))
+
+
+ggplot(ridge_data, aes(x = Income_Total, y = House_Type, fill = House_Type)) +
+  
+  geom_density_ridges(
+    scale = 1.2,          
+    rel_min_height = 0.01, 
+    alpha = 0.7,           
+    quantile_lines = TRUE, 
+    quantiles = 2         
+  ) +
+
+  scale_x_log10(labels = scales::comma, breaks = c(10, 20, 50, 100, 200, 500)) +
+
+  scale_fill_brewer(palette = "Spectral", direction = -1) +
+
+  theme_minimal() +
+  labs(
+    title = "Income Densities by Housing Type",
+    subtitle = "Vertical lines indicate median income for each group",
+    x = "Total Household Income (Million VND) [Log Scale]",
+    y = NULL,
+    fill = "Housing Type"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 12),
+    legend.position = "none"
+  )
+```
+
+## Graph
+```{r}
+#| label: fig-housing-render
+#| ref.label: "fig-housing-ridge"
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+```
+:::
+
+### 3.5.3 Observations
+
+The Ridgeline plot indicates the following specific relationships between housing type and income distribution:
+
+- **Income Gradient**: Density peaks shift rightward from "Cottage" (low income) to "Buildings" (high income), validating housing quality as a wealth proxy.
+- **Variance by Type**: "Cottage" households exhibit low variance (narrow peak at 15-20m VND), whereas "Buildings" show high variance (flat distribution), indicating greater income heterogeneity among the wealthy.
+
+
+
 # 4. Conclusion
 
-# 5. Appendix
+### 4.1 Drivers of Income Inequality
 
-## 5.1 included packages
+The comparative analysis of five key variables identifies demographic and structural factors, rather than geographic location, as the primary determinants of household income.
 
-## 5.2 references
+- **Demographic over Geographic**: While income distributions remain uniform across all five provinces (median range: 20-35m VND), significant stratification exists between ethnic groups. The Kinh majority maintains a 22.8% higher median income compared to Ethnic Minorities.
+- **The Education Threshold**: Human capital accumulation shows non-linear returns. The marginal income increase is minimal between Primary and Lower Secondary levels but expands significantly upon completion of Upper Secondary education. This identifies Upper Secondary certification as a critical differentiator for entering higher income brackets.
+
+### 4.2 Livelihood and Asset Accumulation
+
+Income disparities are further reinforced by livelihood strategies and material living standards.
+
+- **Sectoral Ceilings**: Households relying exclusively on agriculture consistently record the lowest median incomes. Higher income levels are associated with 'Wage' and 'Diversified' livelihood strategies, confirming that transition out of pure farming is a prerequisite for significant income growth.
+- **Asset Validation**: Housing quality serves as a reliable proxy for economic status. The low variance in income among "Cottage" dwellers (concentrated at 15-20m VND) contrasts with the high variance among "Building" residents. This confirms that while poverty is structurally uniform (low income, poor housing), wealth accumulation is more heterogeneous.
+
+### 4.3 Summary
+
+The data characterizes the region as geographically homogenous but structurally divided. Low income is systematically linked to three converging factors: **Ethnic Minority status, low education (Lower Secondary or below), and reliance on pure agriculture.** Conversely, higher economic performance is driven by the completion of Upper Secondary education and engagement in the non-farm economy.
+
+# 5. references
+
+### Data Manipulation & Cleaning (`dplyr`)
+
+https://r4ds.hadley.nz/data-transform
+- *Used for:* `filter()`, `mutate()`, and `group_by()` functions.
+
+### Data Visualization (`ggplot2`)
+
+https://ggplot2.tidyverse.org
+- *Used for:* The foundational "Grammar of Graphics" structure used in all plots.
+
+
