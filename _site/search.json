@@ -312,7 +312,7 @@
     "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#installing-and-launching-r-packages-1",
     "title": "Hands-on_Ex05",
     "section": "Installing and Launching R Packages",
-    "text": "Installing and Launching R Packages\n\npacman::p_load(corrplot, ggstatsplot, tidyverse)\n\npackage 'corrplot' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\downloaded_packages\n\nwine &lt;- read_csv(\"data/wine_quality.csv\")"
+    "text": "Installing and Launching R Packages\n\npacman::p_load(corrplot, ggstatsplot, tidyverse)\nwine &lt;- read_csv(\"data/wine_quality.csv\")"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#building-a-basic-correlation-matrix",
@@ -361,7 +361,7 @@
     "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#installing-and-launching-r-packages-2",
     "title": "Hands-on_Ex05",
     "section": "Installing and Launching R Packages",
-    "text": "Installing and Launching R Packages\n\npacman::p_load(seriation, dendextend, heatmaply, tidyverse)\n\n\n  There is a binary version available but the source version is later:\n        binary source needs_compilation\npermute  0.9-8 0.9-10             FALSE\n\npackage 'ca' successfully unpacked and MD5 sums checked\npackage 'gclus' successfully unpacked and MD5 sums checked\npackage 'qap' successfully unpacked and MD5 sums checked\npackage 'registry' successfully unpacked and MD5 sums checked\npackage 'TSP' successfully unpacked and MD5 sums checked\npackage 'vegan' successfully unpacked and MD5 sums checked\npackage 'seriation' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\downloaded_packages\n\n\npackage 'viridis' successfully unpacked and MD5 sums checked\npackage 'dendextend' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\downloaded_packages\n\n\npackage 'webshot' successfully unpacked and MD5 sums checked\npackage 'assertthat' successfully unpacked and MD5 sums checked\npackage 'egg' successfully unpacked and MD5 sums checked\npackage 'heatmaply' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\downloaded_packages"
+    "text": "Installing and Launching R Packages\n\npacman::p_load(seriation, dendextend, heatmaply, tidyverse)"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#importing-and-preparing-the-data-set",
@@ -382,7 +382,7 @@
     "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#installing-and-launching-r-packages-3",
     "title": "Hands-on_Ex05",
     "section": "Installing and Launching R Packages",
-    "text": "Installing and Launching R Packages\n\npacman::p_load(GGally, parallelPlot, tidyverse)\n\npackage 'parallelPlot' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\downloaded_packages\n\nwh &lt;- read_csv(\"Data/WHData-2018.csv\")"
+    "text": "Installing and Launching R Packages\n\npacman::p_load(GGally, parallelPlot, tidyverse)\nwh &lt;- read_csv(\"Data/WHData-2018.csv\")"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#plotting-a-simple-parallel-coordinates",
@@ -431,7 +431,7 @@
     "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#installing-and-launching-r-packages-4",
     "title": "Hands-on_Ex05",
     "section": "Installing and Launching R Packages",
-    "text": "Installing and Launching R Packages\n\npacman::p_load(treemap, treemapify, tidyverse) \n\npackage 'treemap' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\downloaded_packages\n\n\npackage 'litedown' successfully unpacked and MD5 sums checked\npackage 'markdown' successfully unpacked and MD5 sums checked\npackage 'png' successfully unpacked and MD5 sums checked\npackage 'jpeg' successfully unpacked and MD5 sums checked\npackage 'shades' successfully unpacked and MD5 sums checked\npackage 'gridtext' successfully unpacked and MD5 sums checked\npackage 'ggfittext' successfully unpacked and MD5 sums checked\npackage 'treemapify' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\downloaded_packages\n\nrealis2018 &lt;- read_csv(\"data/realis2018.csv\")"
+    "text": "Installing and Launching R Packages\n\npacman::p_load(treemap, treemapify, tidyverse) \nrealis2018 &lt;- read_csv(\"data/realis2018.csv\")"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#grouped-summaries-without-the-pipe",
@@ -487,7 +487,7 @@
     "href": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#designing-interactive-treemap-using-d3treer",
     "title": "Hands-on_Ex05",
     "section": "Designing Interactive Treemap using d3treeR",
-    "text": "Designing Interactive Treemap using d3treeR\n\nlibrary(devtools)\n\nLoading required package: usethis\n\ninstall_github(\"timelyportfolio/d3treeR\")\n\nUsing GitHub PAT from the git credential store.\n\n\nDownloading GitHub repo timelyportfolio/d3treeR@HEAD\n\n\nrappdirs   (0.3.3  -&gt; 0.3.4    ) [CRAN]\nbase64enc  (0.1-3  -&gt; 0.1-6    ) [CRAN]\nbslib      (0.9.0  -&gt; 0.10.0   ) [CRAN]\nxfun       (0.55   -&gt; 0.56     ) [CRAN]\ndata.table (1.18.0 -&gt; 1.18.2.1 ) [CRAN]\nXML        (NA     -&gt; 3.99-0.22) [CRAN]\ngridSVG    (NA     -&gt; 1.7-7    ) [CRAN]\ndata.tree  (NA     -&gt; 1.2.0    ) [CRAN]\n\n\nInstalling 8 packages: rappdirs, base64enc, bslib, xfun, data.table, XML, gridSVG, data.tree\n\n\nWarning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.5:\n  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.5/PACKAGES'\n\n\n\n  There is a binary version available but the source version is later:\n       binary    source needs_compilation\nXML 3.99-0.20 3.99-0.22              TRUE\n\npackage 'rappdirs' successfully unpacked and MD5 sums checked\npackage 'base64enc' successfully unpacked and MD5 sums checked\npackage 'bslib' successfully unpacked and MD5 sums checked\npackage 'xfun' successfully unpacked and MD5 sums checked\n\n\nWarning: cannot remove prior installation of package 'xfun'\n\n\nWarning in file.copy(savedcopy, lib, recursive = TRUE): problem copying\nD:\\Programs\\R-4.5.2\\library\\00LOCK\\xfun\\libs\\x64\\xfun.dll to\nD:\\Programs\\R-4.5.2\\library\\xfun\\libs\\x64\\xfun.dll: Permission denied\n\n\nWarning: restored 'xfun'\n\n\npackage 'data.table' successfully unpacked and MD5 sums checked\n\n\nWarning: cannot remove prior installation of package 'data.table'\n\n\nWarning in file.copy(savedcopy, lib, recursive = TRUE): problem copying\nD:\\Programs\\R-4.5.2\\library\\00LOCK\\data.table\\libs\\x64\\data_table.dll to\nD:\\Programs\\R-4.5.2\\library\\data.table\\libs\\x64\\data_table.dll: Permission\ndenied\n\n\nWarning: restored 'data.table'\n\n\npackage 'gridSVG' successfully unpacked and MD5 sums checked\npackage 'data.tree' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\downloaded_packages\n\n\ninstalling the source package 'XML'\n\n\n── R CMD build ─────────────────────────────────────────────────────────────────\n* checking for file 'C:\\Users\\tianx\\AppData\\Local\\Temp\\RtmpuYdcA9\\remotesa22c52531ec7\\d3treeR-d3treeR-ebb833d/DESCRIPTION' ... OK\n* preparing 'd3treeR':\n* checking DESCRIPTION meta-information ... OK\n* checking for LF line-endings in source and make files and shell scripts\n* checking for empty or unneeded directories\nOmitted 'LazyData' from DESCRIPTION\n* building 'd3treeR_0.1.tar.gz'\n\n\n\n\nlibrary(d3treeR)\nlibrary(treemap)"
+    "text": "Designing Interactive Treemap using d3treeR\n\nlibrary(devtools)\n\nLoading required package: usethis\n\ninstall_github(\"timelyportfolio/d3treeR\")\n\nUsing GitHub PAT from the git credential store.\n\n\nSkipping install of 'd3treeR' from a github remote, the SHA1 (ebb833db) has not changed since last install.\n  Use `force = TRUE` to force installation\n\n\n\nlibrary(d3treeR)\nlibrary(treemap)"
   },
   {
     "objectID": "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html#designing-an-interactive-treemap",
