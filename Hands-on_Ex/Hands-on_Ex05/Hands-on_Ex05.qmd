@@ -272,7 +272,7 @@ pacman::p_load(GGally, parallelPlot, tidyverse)
 wh <- read_csv("Data/WHData-2018.csv")
 ```
 
-##  Plotting a simple parallel coordinates
+## Plotting a simple parallel coordinates
 
 ```{r}
 ggparcoord(data = wh, 
