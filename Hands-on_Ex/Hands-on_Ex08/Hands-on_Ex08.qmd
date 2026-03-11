@@ -6,18 +6,14 @@ format: html
 # Choropleth Mapping with R
 
 ## Overview
+
 Choropleth mapping involves the symbolisation of enumeration units, such as countries, provinces, states, counties or census units, using area patterns or graduated colors. For example, a social scientist may need to use a choropleth map to portray the spatial distribution of aged population of Singapore by Master Plan 2014 Subzone Boundary.
 
-  
 ## Installing and launching R packages
 
 In this hands-on exercise, the key R package use is tmap package in R. Beside tmap package, four other R packages will be used. They are:
 
-readr for importing delimited text file,
-tidyr for tidying data,
-dplyr for wrangling data and
-sf for handling geospatial data.
-Among the four packages, readr, tidyr and dplyr are part of tidyverse package.
+readr for importing delimited text file, tidyr for tidying data, dplyr for wrangling data and sf for handling geospatial data. Among the four packages, readr, tidyr and dplyr are part of tidyverse package.
 
 ## Importing Data into R
 
@@ -26,11 +22,13 @@ Among the four packages, readr, tidyr and dplyr are part of tidyverse package.
 #| warning: false
 pacman::p_load(sf, tmap, tidyverse)
 ```
+
 ```{r}
 mpsz <- st_read(dsn = "geospatial", 
                 layer = "MP14_SUBZONE_WEB_PL")
 mpsz
 ```
+
 ```{r}
 popdata <- read_csv("aspatial/respopagesextod2011to2020.csv")
 ```
@@ -106,7 +104,6 @@ tm_shape(mpsz_pop2020)+
              fill_alpha = 0.1)
 ```
 
-
 ### Data classification methods of tmap
 
 Most choropleth maps employ some methods of data classification. The point of classification is to take a large number of observations and group them into data ranges or classes.
@@ -160,6 +157,7 @@ tm_shape(mpsz_pop2020)+
 ```
 
 ### Map Layouts
+
 ```{r}
 tm_shape(mpsz_pop2020)+
   tm_polygons("DEPENDENCY",
@@ -196,7 +194,9 @@ tm_shape(mpsz_pop2020)+
              position = c("left", "bottom"))
 tmap_style("white")
 ```
+
 ### Drawing Small Multiple Choropleth Maps
+
 ```{r}
 tm_shape(mpsz_pop2020)+
   tm_fill(c("YOUNG", "AGED"),
@@ -251,7 +251,6 @@ tm_shape(mpsz_pop2020[mpsz_pop2020$REGION_N=="CENTRAL REGION", ])+
   tm_borders(alpha = 0.5)
 ```
 
-
 # Visualising Geospatial Point Data
 
 Proportional symbol maps (also known as graduate symbol maps) are a class of maps that use the visual variable of size to represent differences in the magnitude of a discrete, abruptly changing phenomenon, e.g. counts of people. Like choropleth maps, you can create classed or unclassed versions of these maps. The classed ones are known as range-graded or graduated symbols, and the unclassed are called proportional symbols, where the area of the symbols are proportional to the values of the attribute being mapped. In this hands-on exercise, you will learn how to create a proportional symbol map showing the number of wins by Singapore Pools’ outlets using an R package called tmap.
@@ -267,13 +266,16 @@ list(sgpools)
 ```
 
 ## Creating a sf data frame from an aspatial data frame
+
 ```{r}
 sgpools_sf <- st_as_sf(sgpools, 
                        coords = c("XCOORD", "YCOORD"),
                        crs= 3414)
 list(sgpools_sf)
 ```
+
 ## Drawing Proportional Symbol Map
+
 ```{r}
 tmap_mode("view")
 tm_shape(sgpools_sf) + 
@@ -346,6 +348,7 @@ tmap_arrange(p2, p1, nrow = 1)
 ```
 
 ## Choropleth Map for Rates
+
 ```{r}
 NGA_wp <- NGA_wp %>%
   mutate(pct_functional = wp_functional/total_wp) %>%
