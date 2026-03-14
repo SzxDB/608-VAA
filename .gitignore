@@ -7,3 +7,4 @@
 
 /.quarto/
 **/*.quarto_ipynb
+TakeHome_Ex/TakeHome_Ex02/data/*.csv

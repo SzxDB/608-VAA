@@ -7,7 +7,6 @@ format: html
 
 ## Getting started
 
-
 ### Installing and launching R packages
 
 ```{r}
@@ -32,7 +31,7 @@ GAStech_edges <- read_csv("data/GAStech_email_edge-v2.csv")
 glimpse(GAStech_edges)
 ```
 
-### Wrangling 
+### Wrangling
 
 ```{r}
 GAStech_edges <- GAStech_edges %>%
@@ -83,6 +82,7 @@ GAStech_graph %>%
 ## Plotting Static Network Graphs with ggraph package
 
 ### Plotting a basic network graph
+
 The code chunk below uses ggraph(), geom-edge_link() and geom_node_point() to plot a network graph by using GAStech_graph. Before your get started, it is advisable to read their respective reference guide at least once.
 
 ```{r}
@@ -102,6 +102,7 @@ g + theme_graph(base_family = "Arial")
 ```
 
 ### Changing the coloring of the plot
+
 Furthermore, theme_graph() makes it easy to change the coloring of the plot.
 
 ```{r}
@@ -114,6 +115,7 @@ g + theme_graph(background = 'grey10',
 ```
 
 ### Fruchterman and Reingold layout
+
 The code chunks below will be used to plot the network graph using Fruchterman and Reingold layout.
 
 ```{r}
@@ -138,6 +140,7 @@ g + theme_graph()
 ```
 
 ### Modifying edges
+
 In the code chunk below, the thickness of the edges will be mapped with the Weight variable.
 
 ```{r}
@@ -158,11 +161,10 @@ Another very useful feature of ggraph is faceting. In visualising network data, 
 
 There are three functions in ggraph to implement faceting, they are:
 
-facet_nodes() whereby edges are only draw in a panel if both terminal nodes are present here,
-facet_edges() whereby nodes are always drawn in al panels even if the node data contains an attribute named the same as the one used for the edge facetting, and
-facet_graph() faceting on two variables simultaneously.
+facet_nodes() whereby edges are only draw in a panel if both terminal nodes are present here, facet_edges() whereby nodes are always drawn in al panels even if the node data contains an attribute named the same as the one used for the edge facetting, and facet_graph() faceting on two variables simultaneously.
 
 ### Working with facet_edges()
+
 In the code chunk below, facet_edges() is used. Before getting started, it is advisable for you to read it’s reference guide at least once.
 
 ```{r}
@@ -180,6 +182,7 @@ g + facet_edges(~Weekday)
 ```
 
 ### Working with facet_edges()
+
 The code chunk below uses theme() to change the position of the legend.
 
 ```{r}
@@ -198,6 +201,7 @@ g + facet_edges(~Weekday)
 ```
 
 ### A framed facet graph
+
 The code chunk below adds frame to each graph.
 
 ```{r}
@@ -218,6 +222,7 @@ g + facet_edges(~Weekday) +
 ```
 
 ### Working with facet_nodes()
+
 In the code chunkc below, facet_nodes() is used. Before getting started, it is advisable for you to read it’s reference guide at least once.
 
 ```{r}
@@ -256,6 +261,7 @@ g + theme_graph(base_family = "Arial")
 ```
 
 ### 27.7.2 Visualising network metrics
+
 It is important to note that from ggraph v2.0 onward tidygraph algorithms such as centrality measures can be accessed directly in ggraph calls. This means that it is no longer necessary to precompute and store derived node and edge centrality measures on the graph in order to use them in a plot.
 
 ```{r}
@@ -341,6 +347,7 @@ GAStech_edges_aggregated <- GAStech_edges %>%
 ```
 
 ### Plotting the first interactive network graph
+
 The code chunk below will be used to plot an interactive network graph by using the data prepared.
 
 ```{r}
@@ -349,6 +356,7 @@ visNetwork(GAStech_nodes,
 ```
 
 ### Working with layout
+
 In the code chunk below, Fruchterman and Reingold layout is used.
 
 ```{r}
@@ -358,6 +366,7 @@ visNetwork(GAStech_nodes,
 ```
 
 ### Working with visual attributes - Nodes
+
 visNetwork() looks for a field called “group” in the nodes object and colour the nodes according to the values of the group field.
 
 The code chunk below rename Department field to group.
@@ -379,9 +388,7 @@ visNetwork(GAStech_nodes,
 
 ### Working with visual attributes - Edges
 
-In the code run below visEdges() is used to symbolise the edges.
-- The argument arrows is used to define where to place the arrow.
-- The smooth argument is used to plot the edges using a smooth curve.
+In the code run below visEdges() is used to symbolise the edges. - The argument arrows is used to define where to place the arrow. - The smooth argument is used to plot the edges using a smooth curve.
 
 ```{r}
 visNetwork(GAStech_nodes,
@@ -395,10 +402,10 @@ visNetwork(GAStech_nodes,
 ```
 
 ### Interactivity
+
 In the code chunk below, visOptions() is used to incorporate interactivity features in the data visualisation.
 
-The argument highlightNearest highlights nearest when clicking a node.
-The argument nodesIdSelection adds an id node selection creating an HTML select element.
+The argument highlightNearest highlights nearest when clicking a node. The argument nodesIdSelection adds an id node selection creating an HTML select element.
 
 ```{r}
 visNetwork(GAStech_nodes,
