@@ -704,6 +704,6 @@
     "href": "TakeHome_Ex/TakeHome_Ex02/TakeHome_Ex02.html#analytical-insights",
     "title": "Take-home Exercise 2",
     "section": "4. Analytical Insights",
-    "text": "4. Analytical Insights\nBased on the visual outputs: 1. Target Leakage Validation: The feature importance chart reveals that tx_avg_amount and tx_total_count dominate the tree structure. This suggests that the company likely uses these exact metrics to define the CLV segments internally. 2. Behavioral Gap: app_logins_frequency holds almost no weight in predicting CLV segments. This highlights a strategic gap: highly active App users do not necessarily translate to high-value customers. The business should focus on monetizing high-frequency app behaviors."
+    "text": "4. Analytical Insights\nBased on the visual outputs:\n\nTarget Leakage Validation: The feature importance chart reveals that tx_avg_amount and tx_total_count dominate the tree structure. This suggests that the company likely uses these exact metrics to define the CLV segments internally.\nBehavioral Gap: app_logins_frequency holds almost no weight in predicting CLV segments. This highlights a strategic gap: highly active App users do not necessarily translate to high-value customers. The business should focus on monetizing high-frequency app behaviors."
   }
 ]
