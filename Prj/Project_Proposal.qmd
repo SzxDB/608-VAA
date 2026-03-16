@@ -40,7 +40,7 @@ The application will feature a coordinated, multi-tab layout following a standar
 
 ```{r}
 #| label: fig-storyboard
-#| fig-cap: "Figure 3: Integrated Analytical Storyboard and Shiny Application Flow"
+#| fig-cap: "Analytical Storyboard"
 #| fig-align: center
 #| echo: false
 #| out-width: "100%"
