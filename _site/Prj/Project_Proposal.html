@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Group X (Bao Sihan, Bai Haotian, Shuang Zixin)">
+<meta name="author" content="Group 9 (Bao Sihan, Bai Haotian, Shuang Zixin)">
 <meta name="dcterms.date" content="2026-03-16">
 
 <title>Project Proposal: Visual Analytics for Fintech Customer Insights – 608-VAA</title>
@@ -239,7 +239,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Group X (Bao Sihan, Bai Haotian, Shuang Zixin) </p>
+             <p>Group 9 (Bao Sihan, Bai Haotian, Shuang Zixin) </p>
           </div>
   </div>
     
@@ -302,7 +302,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>3. Churn &amp; CLV Prediction</strong></td>
-<td style="text-align: left;">Decision Trees (<code>rpart</code>)</td>
+<td style="text-align: left;">Decision Trees (rpart)</td>
 <td style="text-align: left;">Extracting actionable rules for Churn Probability and Customer Lifetime Value tiers.</td>
 <td style="text-align: left;">Enabling proactive retention strategies through interpretable machine learning rules.</td>
 </tr>
@@ -312,7 +312,7 @@ window.Quarto = {
 </section>
 <section id="application-architecture-interactive-storyboard" class="level2">
 <h2 class="anchored" data-anchor-id="application-architecture-interactive-storyboard">3. Application Architecture &amp; Interactive Storyboard</h2>
-<p>To bridge our analytical backend with actionable business intelligence, we have designed an interactive R Shiny application. <strong>Figure 3</strong> (the storyboard below) synthesizes our entire workflow—demonstrating how multidimensional inputs (Demographics, Behavioral, and Transactional data) feed into our statistical and machine learning models, and ultimately manifest as interactive UI modules.</p>
+<p>To bridge our analytical backend with actionable business intelligence, we have designed an interactive R Shiny application. The storyboard below synthesizes our entire workflow—demonstrating how multidimensional inputs (Demographics, Behavioral, and Transactional data) feed into our statistical and machine learning models, and ultimately manifest as interactive UI modules.</p>
 <p>The application will feature a coordinated, multi-tab layout following a standard sidebar-and-main-panel design, ensuring a seamless user experience.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -345,11 +345,11 @@ Figure&nbsp;1: Figure 3: Integrated Analytical Storyboard and Shiny Application 
 <h3 class="anchored" data-anchor-id="latent-class-clustering-customer-persona-module">3.2 Latent Class Clustering (Customer Persona) Module</h3>
 <p>Drawing from the combined demographic, behavioral, and transactional features, this module translates the <code>poLCA</code> algorithm into interpretable customer segments.</p>
 <ul>
-<li><strong>Interactivity:</strong> * A dropdown menu to select the specific categorical/binned variables to be included in the clustering procedure (e.g., age group, preferred transaction type, login frequency tiers).
+<li><strong>Interactivity:</strong> A dropdown menu to select the specific categorical/binned variables to be included in the clustering procedure (e.g., age group, preferred transaction type, login frequency tiers).
 <ul>
-<li>A numeric selector to dynamically adjust the <strong>Number of Classes (<span class="math inline">\(k\)</span>)</strong>.</li>
+<li>A numeric selector to dynamically adjust the <strong>Number of Classes (</strong><span class="math inline">\(k\)</span>).</li>
 </ul></li>
-<li><strong>Outputs:</strong> * <strong>Model Fit Charts</strong> (AIC, BIC, Entropy) to help users visually justify the optimal cluster count.
+<li><strong>Outputs:</strong> <strong>Model Fit Charts</strong> (AIC, BIC, Entropy) to help users visually justify the optimal cluster count.
 <ul>
 <li>A <strong>Cluster Size Bar Chart</strong> and a <strong>Feature Probability Heatmap</strong>, allowing marketing teams to build clear, actionable personas for each latent class.</li>
 </ul></li>
@@ -359,11 +359,11 @@ Figure&nbsp;1: Figure 3: Integrated Analytical Storyboard and Shiny Application 
 <h3 class="anchored" data-anchor-id="churn-clv-decision-tree-module">3.3 Churn &amp; CLV Decision Tree Module</h3>
 <p>This predictive module brings the CART machine learning model to the frontend, identifying the exact behavioral and demographic drivers of customer churn.</p>
 <ul>
-<li><strong>Interactivity:</strong> * Users can dynamically select specific predictor variables to train the tree (e.g., omitting “Transaction Amount” to observe purely behavioral drivers).
+<li><strong>Interactivity:</strong> Users can dynamically select specific predictor variables to train the tree (e.g., omitting “Transaction Amount” to observe purely behavioral drivers).
 <ul>
-<li>A <code>sliderInput</code> for the <strong>Complexity Parameter (<span class="math inline">\(cp\)</span>)</strong> and <strong>Minimum Split</strong> to visually grow or prune the tree in real-time, preventing overfitting.</li>
+<li>A <code>sliderInput</code> for the <strong>Complexity Parameter (</strong><span class="math inline">\(cp\)</span>) and <strong>Minimum Split</strong> to visually grow or prune the tree in real-time, preventing overfitting.</li>
 </ul></li>
-<li><strong>Outputs:</strong> * An interactive <code>visNetwork</code> decision tree, allowing users to zoom in, pan, and trace specific churn rules node-by-node.
+<li><strong>Outputs:</strong> An interactive <code>visNetwork</code> decision tree, allowing users to zoom in, pan, and trace specific churn rules node-by-node.
 <ul>
 <li>A <strong>Feature Importance Bar Chart</strong> (<code>ggplot2</code>) to highlight the most critical variables, alongside a dynamically updated <strong>Confusion Matrix</strong> to evaluate the model’s accuracy and sensitivity on the fly.</li>
 </ul></li>
